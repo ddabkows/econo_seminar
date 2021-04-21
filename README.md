@@ -1,1 +1,0 @@
-# econo_seminar
