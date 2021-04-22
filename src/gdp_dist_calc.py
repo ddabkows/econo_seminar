@@ -35,8 +35,8 @@ def main():
                         dst_lat: float = database["ycoord"][row_to_compare]
                         distance: float = dist_calc.dist_calc(src_long, src_lat, dst_long, dst_lat)
                         database["dist_avg_gcp_ppp"][row_to_check] = distance
-                    if database["avg_gcp_ppc"][row_to_compare] > biggest_ppc:
-                        biggest_ppc = database["avg_gcp_ppc"][row_to_compare]
+                    if database["avg_gcpppc"][row_to_compare] > biggest_ppc:
+                        biggest_ppc = database["avg_gcpppc"][row_to_compare]
                         dst_long: float = database["xcoord"][row_to_compare]
                         dst_lat: float = database["ycoord"][row_to_compare]
                         distance: float = dist_calc.dist_calc(src_long, src_lat, dst_long, dst_lat)
