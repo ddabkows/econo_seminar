@@ -11,7 +11,7 @@ import pandas
 def main():
     with open("../data/regime_change_5_years.csv") as dataset:
         database = pandas.read_csv(dataset,
-                                   usecols=["id", "gid", "year", "conflict", "regime change",
+                                   usecols=["id", "gid", "year", "conflict", "regime change", "logdistcap",
                                             "regime change within 5 years"],
                                    sep=',')
         size: int = len(database["regime change within 5 years"])

@@ -10,5 +10,5 @@ import pandas
 
 data = pandas.io.stata.read_stata("../data/workingfile2_onset.dta")
 
-data_to_extract = pandas.DataFrame(zip(data.gid, data.year, data.ConfIntra, data.transition))
+data_to_extract = pandas.DataFrame(zip(data.gid, data.year, data.ConfIntra, data.transition, data.logcapdist))
 data_to_extract.to_csv("../data/workingfile2_extracted_data.csv")
