@@ -14,28 +14,26 @@ FIRST_ITERATION: int = 6
 def main():
     with open("../data/regime_change_5_years.csv") as dataset:
         database = pandas.read_csv(dataset,
-                                   usecols=["id", "gid", "year", "conflict", "regime change", "logdistcap",
-                                            "loggcppc", "logpop", "imr", "logttime", "logcellarea",
-                                            "logdist_LNC", "mountain2000", "ycoord", "degtemper",
-                                            "prec"],
+                                   usecols=["id", "gid", "isocode", "year", "ConfIntra", "transition",
+                                            "logcapdist", "avg_polity2", "logbdist2", "degtemper", "prec"],
                                    sep=',')
         print(database.head())
         size: int = len(database["year"])
-        database["regime change within 5 years"] = 0
+        database["transition6"] = 0
         for row_starting_points in range(FIRST_ITERATION, size):
             regime_change_5_years: int = 0
-            if database["regime change"][row_starting_points] != 1:
-                for row_check in range(row_starting_points - FIRST_ITERATION, row_starting_points):
-                    if database["gid"][row_starting_points] == database["gid"][row_check]:
-                        if database["year"][row_starting_points] - database["year"][row_check] == 6:
-                            if database["regime change"][row_check] == 1:
-                                regime_change_5_years = 2
-                        if database["year"][row_starting_points] - database["year"][row_check] <= 5:
-                            if database["regime change"][row_check] == 1:
-                                regime_change_5_years = 1
-                print("Recording " + str(regime_change_5_years) + " to " + str(database["gid"][row_starting_points]) +
-                      " in " + str(database["year"][row_starting_points]) + ".")
-                database["regime change within 5 years"][row_starting_points] = regime_change_5_years
+            for row_check in range(row_starting_points - FIRST_ITERATION, row_starting_points):
+                if database["gid"][row_starting_points] == database["gid"][row_check]:
+                    if database["year"][row_starting_points] - database["year"][row_check] == 6:
+                        if database["transition"][row_check] == 1:
+                            regime_change_5_years = 2
+                    if database["year"][row_starting_points] - database["year"][row_check] <= 5:
+                        if database["transition"][row_check] == 1:
+                            regime_change_5_years = 1
+            print("Recording " + str(regime_change_5_years) + " to " + str(database["gid"][row_starting_points]) +
+                  ", " + str(database["isocode"][row_starting_points]) + " in " +
+                  str(database["year"][row_starting_points]) + ".")
+            database["transition6"][row_starting_points] = regime_change_5_years
             if (row_starting_points / size * 100) % 2 == 0:
                 print(" " * 10 + str(round(row_starting_points / size * 100, 2)) + " % of the data covered.")
                 time.sleep(1)

@@ -10,8 +10,6 @@ import pandas
 
 data = pandas.io.stata.read_stata("../data/workingfile2_onset.dta")
 
-data_to_extract = pandas.DataFrame(zip(data.gid, data.year, data.ConfIntra, data.transition, data.logcapdist,
-                                       data.loggcppc, data.logpop, data.imr, data.logttime,
-                                       data.logcellarea, data.logdist_LNC, data.mountain2000,
-                                       data.ycoord, data.degtemper, data.prec))
+data_to_extract = pandas.DataFrame(zip(data.gid, data.isocode, data.year, data.ConfIntra, data.transition,
+                                       data.logcapdist, data.avg_polity2, data.logbdist2, data.degtemper, data.prec))
 data_to_extract.to_csv("../data/workingfile2_extracted_data.csv")

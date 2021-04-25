@@ -11,21 +11,20 @@ import pandas
 def main():
     with open("../data/regime_change_5_years.csv") as dataset:
         database = pandas.read_csv(dataset,
-                                   usecols=["id", "gid", "year", "conflict", "regime change", "logdistcap",
-                                            "loggcppc", "logpop", "imr", "logttime", "logcellarea",
-                                            "logdist_LNC", "mountain2000", "ycoord", "degtemper",
-                                            "prec", "regime change within 5 years"],
+                                   usecols=["id", "gid", "isocode", "year", "ConfIntra", "transition",
+                                            "logcapdist", "avg_polity2", "logbdist2", "degtemper", "prec",
+                                            "transition6"],
                                    sep=',')
-        size: int = len(database["regime change within 5 years"])
+        size: int = len(database["ConfIntra"])
         no_regime_change: int = 0
         iteration_6_years: int = 0
         iteration_less_6_years: int = 0
         for row in range(0, size):
-            if database["regime change within 5 years"][row] == 0:
+            if database["transition6"][row] == 0:
                 no_regime_change += 1
-            elif database["regime change within 5 years"][row] == 1:
+            elif database["transition6"][row] == 1:
                 iteration_less_6_years += 1
-            elif database["regime change within 5 years"][row] == 2:
+            elif database["transition6"][row] == 2:
                 iteration_6_years += 1
         print("Sample size: " + str(size))
         print("\n Number of non-elligible entries: " + str(no_regime_change))
