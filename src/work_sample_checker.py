@@ -12,7 +12,9 @@ def main():
     with open("../data/regime_change_5_years.csv") as dataset:
         database = pandas.read_csv(dataset,
                                    usecols=["id", "gid", "year", "conflict", "regime change", "logdistcap",
-                                            "regime change within 5 years"],
+                                            "loggcppc", "logpop", "imr", "logttime", "logcellarea",
+                                            "logdist_LNC", "mountain2000", "ycoord", "degtemper",
+                                            "prec", "regime change within 5 years"],
                                    sep=',')
         size: int = len(database["regime change within 5 years"])
         no_regime_change: int = 0

@@ -14,7 +14,10 @@ FIRST_ITERATION: int = 6
 def main():
     with open("../data/regime_change_5_years.csv") as dataset:
         database = pandas.read_csv(dataset,
-                                   usecols=["id", "gid", "year", "conflict", "regime change", "logdistcap"],
+                                   usecols=["id", "gid", "year", "conflict", "regime change", "logdistcap",
+                                            "loggcppc", "logpop", "imr", "logttime", "logcellarea",
+                                            "logdist_LNC", "mountain2000", "ycoord", "degtemper",
+                                            "prec"],
                                    sep=',')
         print(database.head())
         size: int = len(database["year"])
