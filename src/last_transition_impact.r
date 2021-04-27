@@ -19,6 +19,7 @@ dataframe = read.csv(paste(IMP_PATH,
                            sep=""),
                      stringsAsFactors=T,
                      sep=",")
+plot(dataframe$last.transition, dataframe$ConfIntra)
 
 dataframe = pdata.frame(dataframe, index=c("year"))
 formula = ConfIntra ~ logcapdist + logbdist2 + degtemper + prec +

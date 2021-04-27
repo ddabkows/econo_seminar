@@ -6,8 +6,8 @@
 
 library(plm)
 library(aod)
+library(pglm)
 library(bife)
-
 
 setwd("/home/dominik/Documents/seminar_econo/econo_seminar/")
 EXP_PATH = "img/"
@@ -50,7 +50,7 @@ plot(noneli_group$logcapdist, noneli_group$ConfIntra)
 
 treatment_reg = bife(regression,
                     data = treatment_group,
-                    model='logit')
+                    model="logit")
 treatment_pred = predict(treatment_reg)
 summary(treatment_reg)
 
@@ -59,6 +59,7 @@ control_reg = bife(regression,
                   model="logit")
 control_pred = predict(control_reg)
 summary(control_reg)
+AIC(control_reg)
 
 noneli_reg = bife(regression,
                  data=noneli_group,
@@ -71,3 +72,4 @@ trans6_reg = bife(trans_regression,
                   model='logit')
 trans6_pred = predict(trans6_reg)
 summary(trans6_reg)
+
