@@ -13,25 +13,21 @@ def main():
         database = pandas.read_csv(dataset,
                                    usecols=["id", "gid", "isocode", "year", "ConfIntra", "transition",
                                             "logcapdist", "avg_polity2", "logbdist2", "degtemper", "prec",
-                                            "transition6"],
+                                            "pre_transition"],
                                    sep=',')
         size: int = len(database["ConfIntra"])
-        no_regime_change: int = 0
-        iteration_6_years: int = 0
-        iteration_less_6_years: int = 0
+        pre_transition: int = 0
+        post_transition: int = 0
         for row in range(0, size):
-            if database["transition6"][row] == 0:
-                no_regime_change += 1
-            elif database["transition6"][row] == 1:
-                iteration_less_6_years += 1
-            elif database["transition6"][row] == 2:
-                iteration_6_years += 1
+            if database["pre_transition"][row] == 0:
+                post_transition += 1
+            elif database["pre_transition"][row] == 1:
+                pre_transition += 1
         print("Sample size: " + str(size))
-        print("\n Number of non-elligible entries: " + str(no_regime_change))
-        print("\n Number of non-elligible control group entries: " + str(iteration_6_years))
-        print("Proportion of the control group (to the sample size): " + str(iteration_6_years/size))
-        print("\n Number of elligible treatment group entries: " + str(iteration_less_6_years))
-        print("Proportion of the treatment group (to the sample size): " + str(iteration_less_6_years/size))
+        print("\n Number of pre-transition entries: " + str(pre_transition))
+        print("Proportion of the pre-transition group (to the sample size): " + str(pre_transition/size))
+        print("\n Number of post-transition entries: " + str(post_transition))
+        print("Proportion of the post-transition group (to the sample size): " + str(post_transition/size))
 
 
 if __name__ == "__main__":
