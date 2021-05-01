@@ -40,6 +40,7 @@ def main():
                 if database["gid"][row_starting_points] == database["gid"][row_check]:
                     if database["transition"][row_check] == 1:
                         next_transition = database["year"][row_check] - database["year"][row_starting_points]
+                        break
                 elif database["gid"][row_starting_points] != database["gid"][row_check]:
                     break
             if (next_transition < last_transition) and (next_transition <= 5):
