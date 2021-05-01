@@ -43,9 +43,9 @@ def main():
                         break
                 elif database["gid"][row_starting_points] != database["gid"][row_check]:
                     break
-            if (next_transition < last_transition) and (next_transition <= 5):
+            if (next_transition < last_transition or numpy.isnan(last_transition)) and (next_transition <= 5):
                 database["pre_transition"][row_starting_points] = 1
-            elif (last_transition < next_transition) and (last_transition <= 5):
+            elif (last_transition < next_transition or numpy.isnan(next_transition)) and (last_transition <= 5):
                 database["pre_transition"][row_starting_points] = 0
             database["last_transition"][row_starting_points] = last_transition
             database["next_transition"][row_starting_points] = next_transition
